@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Financing Challenge</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255,190,220,.55), transparent 30%),
+        radial-gradient(circle at 90% 85%, rgba(189,174,255,.48), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(120,205,255,.30), transparent 35%),
+        linear-gradient(135deg,#edf8ff 0%,#dff2ff 45%,#dcecff 100%);
+
+      color:#17324d;
+      min-height:100vh;
+    }
+
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .card{
+      width:min(720px,100%);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.98),
+          rgba(249,253,255,.95)
+        );
+
+      border-radius:26px;
+      overflow:hidden;
+
+      border:1px solid rgba(255,255,255,.9);
+
+      box-shadow:
+        0 18px 45px rgba(38,104,180,.18),
+        0 0 40px rgba(245,181,224,.15);
+    }
+
+    .progress{
+      height:7px;
+      background:#d9eaff;
+    }
+
+    .progress div{
+      height:100%;
+      width:0%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #164fd9,
+          #1c7ef5,
+          #2cb2ff
+        );
+
+      transition:.25s;
+    }
+
+    .content{
+      padding:36px 28px;
+
+      background:
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(255,190,216,.20),
+          transparent 33%
+        ),
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(176,211,255,.24),
+          transparent 35%
+        );
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .hero,
+    .result{
+      text-align:center;
+    }
+
+    .hero{
+      padding:28px 4px 24px;
+    }
+
+    h1{
+      color:#074ca8;
+
+      font-size:clamp(32px,7vw,46px);
+      line-height:1.08;
+
+      margin:10px auto 18px;
+      max-width:600px;
+    }
+
+    h2{
+      color:#0752ad;
+    }
+
+    .hero p{
+      color:#536c88;
+      font-size:16px;
+      line-height:1.6;
+      max-width:520px;
+      margin:0 auto 32px;
+    }
+
+    .primary{
+      width:100%;
+
+      border:0;
+      border-radius:16px;
+
+      padding:16px;
+
+      font-size:16px;
+      font-weight:bold;
+
+      color:white;
+      cursor:pointer;
+
+      background:
+        linear-gradient(
+          100deg,
+          #064acb 0%,
+          #0e74f5 55%,
+          #28a8ff 100%
+        );
+
+      box-shadow:
+        0 9px 22px rgba(20,111,237,.28);
+
+      transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+    }
+
+    .primary:hover{
+      transform:translateY(-1px);
+
+      box-shadow:
+        0 12px 26px rgba(20,111,237,.32);
+    }
+
+    .primary:active{
+      transform:translateY(1px);
+    }
+
+    .quiz-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+      gap:12px;
+    }
+
+    #questionNo{
+      color:#0752ad;
+      font-size:14px;
+    }
+
+    .timer{
+      font-weight:bold;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e8f2ff,
+          #f5edff
+        );
+
+      color:#0752ad;
+
+      padding:9px 13px;
+
+      border-radius:999px;
+
+      min-width:60px;
+
+      text-align:center;
+
+      border:1px solid #d3e5ff;
+    }
+
+    .timer.danger{
+      background:#fff0f4;
+      color:#d9415d;
+      border-color:#ffcbd7;
+    }
+
+    .timerbar{
+      height:6px;
+      background:#edf1f6;
+      border-radius:99px;
+      overflow:hidden;
+      margin-bottom:22px;
+    }
+
+    .timerbar div{
+      height:100%;
+      width:100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #1556e8,
+          #1b8cf9,
+          #39b8ff
+        );
+    }
+
+    .question{
+      font-size:22px;
+      font-weight:bold;
+      line-height:1.42;
+      margin-bottom:22px;
+      color:#153b69;
+    }
+
+    .options{
+      display:grid;
+      gap:12px;
+    }
+
+    .option{
+      border:1.5px solid #d5e5f7;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #fbfdff 72%,
+          #fff6fb 100%
+        );
+
+      border-radius:15px;
+
+      padding:15px 16px;
+
+      text-align:left;
+      cursor:pointer;
+
+      font-size:15px;
+      line-height:1.4;
+
+      color:#244767;
+
+      transition:
+        border .15s ease,
+        background .15s ease;
+    }
+
+    .option:hover{
+      border-color:#72aef5;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f6fbff,
+          #fff7fc
+        );
+    }
+
+    .option.correct{
+      background:#ecfff3;
+      border-color:#50c878;
+      color:#116b36;
+      font-weight:bold;
+    }
+
+    .option.wrong{
+      background:#fff1f4;
+      border-color:#ef879a;
+      color:#a3253d;
+    }
+
+    .option:disabled{
+      cursor:default;
+    }
+
+    .feedback{
+      margin-top:17px;
+      padding:15px 16px;
+      border-radius:14px;
+      display:none;
+      line-height:1.5;
+      font-size:14px;
+    }
+
+    .feedback.good{
+      display:block;
+      background:#ecfff3;
+      color:#15693a;
+      border:1px solid #bce9cc;
+    }
+
+    .feedback.bad{
+      display:block;
+      background:#fff4f6;
+      color:#982c42;
+      border:1px solid #ffd0da;
+    }
+
+    .next{
+      margin-top:17px;
+      display:none;
+    }
+
+    .score{
+      font-size:70px;
+      font-weight:bold;
+      color:#0752d0;
+      margin:20px 0 2px;
+
+      text-shadow:
+        0 5px 18px rgba(27,99,227,.15);
+    }
+
+    .result h2{
+      font-size:30px;
+      margin:22px 0 10px;
+    }
+
+    .result p{
+      color:#59708a;
+      line-height:1.6;
+    }
+
+    .reward{
+      background:
+        linear-gradient(
+          135deg,
+          #ecfff4,
+          #f5fff9
+        );
+
+      border:1.5px dashed #38aa66;
+      color:#126a38;
+
+      padding:20px;
+      border-radius:18px;
+      margin:22px 0;
+
+      line-height:1.65;
+      font-weight:bold;
+    }
+
+    .retry{
+      background:
+        linear-gradient(
+          135deg,
+          #fff4f7,
+          #fff9fc
+        );
+
+      border:1.5px dashed #e48ba1;
+      color:#91364d;
+
+      padding:20px;
+      border-radius:18px;
+      margin:22px 0;
+
+      line-height:1.65;
+      font-weight:bold;
+    }
+
+    @media(max-width:520px){
+      .wrap{
+        padding:12px;
+      }
+
+      .card{
+        border-radius:22px;
+      }
+
+      .content{
+        padding:26px 19px;
+      }
+
+      h1{
+        font-size:35px;
+      }
+
+      .hero p{
+        font-size:15px;
+      }
+
+      .question{
+        font-size:19px;
+      }
+
+      .option{
+        font-size:14px;
+      }
+
+      .score{
+        font-size:60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="card">
+
+    <div class="progress">
+      <div id="progressBar"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- HALAMAN AWAL -->
+      <div id="startScreen" class="hero">
+
+        <h1>
+          How Well Do You Know Investment Financing?
+        </h1>
+
+        <p>
+          Yuk, uji pengetahuanmu tentang Investment Financing
+          dengan mengikuti quiz ini.
+        </p>
+
+        <button
+          class="primary"
+          id="startBtn"
+        >
+          Mulai Quiz
+        </button>
+
+      </div>
+
+
+      <!-- HALAMAN QUIZ -->
+      <div id="quizScreen" class="hidden">
+
+        <div class="quiz-head">
+
+          <strong id="questionNo"></strong>
+
+          <div
+            class="timer"
+            id="timer"
+          >
+            15s
+          </div>
+
+        </div>
+
+        <div class="timerbar">
+          <div id="timerBar"></div>
+        </div>
+
+        <div
+          class="question"
+          id="questionText"
+        ></div>
+
+        <div
+          class="options"
+          id="options"
+        ></div>
+
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
+
+        <button
+          class="primary next"
+          id="nextBtn"
+        >
+          Lanjut
+        </button>
+
+      </div>
+
+
+      <!-- HALAMAN HASIL -->
+      <div
+        id="resultScreen"
+        class="result hidden"
+      >
+
+        <div
+          class="score"
+          id="scoreText"
+        >
+          0
+        </div>
+
+        <div>
+          Nilai Akhir
+        </div>
+
+        <h2 id="resultTitle"></h2>
+
+        <p id="resultCopy"></p>
+
+        <div id="resultMessage"></div>
+
+        <button
+          class="primary"
+          id="restartBtn"
+        >
+          Ulang Quiz
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ========================================
+   PENGATURAN QUIZ
+======================================== */
+
+const TIME_LIMIT = 15;
+
+const PASSING_SCORE = 70;
+
+const QUESTIONS_TO_SHOW = 10;
+
+
+/* ========================================
+   BANK SOAL
+
+   answer:
+   0 = A
+   1 = B
+   2 = C
+   3 = D
+======================================== */
+
+const QUESTIONS = [
+
+  {
+    question:
+      "Fioni sedang membutuhkan pembiayaan pembelian aset produktif di developer rekanan. Program pembiayaan yang dapat digunakan adalah:",
+
+    options:[
+      "Kredit Tempat Usaha / Investment Financing",
+      "Kredit Modal Kerja",
+      "KPR",
+      "KKB"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Jawaban yang benar adalah Kredit Tempat Usaha / Investment Financing."
+  },
+
+  {
+    question:
+      "Apakah salah satu benefit Kredit Tempat Usaha adalah unit tetap dapat dibiayai walaupun sertifikatnya masih induk dan/atau bangunannya masih indent?",
+
+    options:[
+      "Benar",
+      "Salah"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Benar. Unit dapat diproses sesuai ketentuan program walaupun sertifikat masih induk dan/atau bangunan masih indent."
+  },
+
+  {
+    question:
+      "Apakah benar Kredit Tempat Usaha tidak mewajibkan Asuransi Jiwa?",
+
+    options:[
+      "Salah",
+      "Benar"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Benar. Kredit Tempat Usaha tidak mewajibkan Asuransi Jiwa."
+  },
+
+  {
+    question:
+      "PT Maju Terus ingin membeli ruko di developer rekanan KPR dan sertifikat induknya belum pecah. Apakah pengajuannya dapat diproses dengan kredit?",
+
+    options:[
+      "Tidak bisa, karena pengajuan menggunakan nama PT",
+      "Bisa, menggunakan Program Kredit Tempat Usaha / Investment Financing"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Pengajuan dapat menggunakan Program Kredit Tempat Usaha / Investment Financing."
+  },
+
+  {
+    question:
+      "Apa saja objek yang dapat dibiayai melalui Program Kredit Tempat Usaha / Investment Financing?",
+
+    options:[
+      "Gudang, Ruko, Rumah Tinggal",
+      "Gudang, Ruko, SoHo, Business Loft",
+      "Business Loft, Rumah Tinggal, Ruko",
+      "Apartemen, Gudang, Ruko"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Jawaban yang benar adalah Gudang, Ruko, SoHo, dan Business Loft."
+  },
+
+  {
+    question:
+      "Berapa DP minimal untuk pembelian unit ruko melalui Program Kredit Tempat Usaha / Investment Financing?",
+
+    options:[
+      "10%",
+      "5%",
+      "20%",
+      "30%"
+    ],
+
+    answer:0,
+
+    explanation:
+      "DP minimal untuk pembelian unit ruko melalui Program Kredit Tempat Usaha adalah 10%."
+  },
+
+  {
+    question:
+      "Regina saat ini masih dalam proses cicilan bertahap (in-house) di developer kerja sama dan berencana mengalihkan pembiayaannya menjadi cicilan melalui Bank . Apakah hal tersebut memungkinkan?",
+
+    options:[
+      "Ya, bisa dialihkan ke Bank",
+      "Tidak bisa, karena Regina sudah memilih cicilan bertahap (in-house) di developer"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Bisa. Pengalihan dari cicilan in-house ke pembiayaan bank dimungkinkan."
+  },
+
+  {
+    question:"Pertanyaan nomor 8?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:2,
+
+    explanation:
+      "Penjelasan jawaban nomor 8."
+  },
+
+  {
+    question:"Pertanyaan nomor 9?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:3,
+
+    explanation:
+      "Penjelasan jawaban nomor 9."
+  },
+
+  {
+    question:"Pertanyaan nomor 10?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Penjelasan jawaban nomor 10."
+  },
+
+  {
+    question:"Pertanyaan nomor 11?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Penjelasan jawaban nomor 11."
+  },
+
+  {
+    question:"Pertanyaan nomor 12?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:2,
+
+    explanation:
+      "Penjelasan jawaban nomor 12."
+  },
+
+  {
+    question:"Pertanyaan nomor 13?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:3,
+
+    explanation:
+      "Penjelasan jawaban nomor 13."
+  },
+
+  {
+    question:"Pertanyaan nomor 14?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Penjelasan jawaban nomor 14."
+  },
+
+  {
+    question:"Pertanyaan nomor 15?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Penjelasan jawaban nomor 15."
+  },
+
+  {
+    question:"Pertanyaan nomor 16?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:2,
+
+    explanation:
+      "Penjelasan jawaban nomor 16."
+  },
+
+  {
+    question:"Pertanyaan nomor 17?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:3,
+
+    explanation:
+      "Penjelasan jawaban nomor 17."
+  },
+
+  {
+    question:"Pertanyaan nomor 18?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:0,
+
+    explanation:
+      "Penjelasan jawaban nomor 18."
+  },
+
+  {
+    question:"Pertanyaan nomor 19?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:1,
+
+    explanation:
+      "Penjelasan jawaban nomor 19."
+  },
+
+  {
+    question:"Pertanyaan nomor 20?",
+
+    options:[
+      "Pilihan A",
+      "Pilihan B",
+      "Pilihan C",
+      "Pilihan D"
+    ],
+
+    answer:2,
+
+    explanation:
+      "Penjelasan jawaban nomor 20."
+  }
+
+];
+
+
+/* ========================================
+   MESIN QUIZ
+======================================== */
+
+let activeQuestions=[];
+
+let current=0;
+
+let correct=0;
+
+let answered=false;
+
+let timeLeft=TIME_LIMIT;
+
+let timerId=null;
+
+
+const $=
+  id=>
+    document.getElementById(id);
+
+
+function shuffleArray(array){
+
+  const result=[...array];
+
+  for(
+    let i=result.length-1;
+    i>0;
+    i--
+  ){
+
+    const j=
+      Math.floor(
+        Math.random()*(i+1)
+      );
+
+    [
+      result[i],
+      result[j]
+    ]=
+    [
+      result[j],
+      result[i]
+    ];
+  }
+
+  return result;
+}
+
+
+function clearQuizTimer(){
+
+  if(timerId){
+
+    clearInterval(timerId);
+
+    timerId=null;
+  }
+}
+
+
+function startQuiz(){
+
+  clearQuizTimer();
+
+  current=0;
+  correct=0;
+  answered=false;
+
+  activeQuestions=
+    shuffleArray(QUESTIONS)
+      .slice(
+        0,
+        Math.min(
+          QUESTIONS_TO_SHOW,
+          QUESTIONS.length
+        )
+      );
+
+  $("startScreen")
+    .classList
+    .add("hidden");
+
+  $("resultScreen")
+    .classList
+    .add("hidden");
+
+  $("quizScreen")
+    .classList
+    .remove("hidden");
+
+  renderQuestion();
+}
+
+
+function renderQuestion(){
+
+  clearQuizTimer();
+
+  answered=false;
+
+  $("feedback").className=
+    "feedback";
+
+  $("feedback").innerHTML=
+    "";
+
+  $("nextBtn").style.display=
+    "none";
+
+  const q=
+    activeQuestions[current];
+
+  $("questionNo").textContent=
+    `Pertanyaan ${current+1} dari ${activeQuestions.length}`;
+
+  $("questionText").textContent=
+    q.question;
+
+  $("progressBar").style.width=
+    `${(current/activeQuestions.length)*100}%`;
+
+  $("options").innerHTML=
+    "";
+
+  q.options.forEach(
+    (option,index)=>{
+
+      const button=
+        document.createElement(
+          "button"
+        );
+
+      button.type=
+        "button";
+
+      button.className=
+        "option";
+
+      button.textContent=
+        `${String.fromCharCode(65+index)}. ${option}`;
+
+      button.addEventListener(
+        "click",
+        ()=>chooseAnswer(
+          index,
+          button
+        )
+      );
+
+      $("options")
+        .appendChild(
+          button
+        );
+    }
+  );
+
+  startTimer();
+}
+
+
+function startTimer(){
+
+  timeLeft=
+    TIME_LIMIT;
+
+  updateTimer();
+
+  $("timerBar").style.transition=
+    "none";
+
+  $("timerBar").style.width=
+    "100%";
+
+  requestAnimationFrame(
+    ()=>{
+
+      requestAnimationFrame(
+        ()=>{
+
+          $("timerBar")
+            .style
+            .transition=
+            `width ${TIME_LIMIT}s linear`;
+
+          $("timerBar")
+            .style
+            .width=
+            "0%";
+        }
+      );
+    }
+  );
+
+  timerId=
+    setInterval(
+      ()=>{
+
+        timeLeft--;
+
+        updateTimer();
+
+        if(
+          timeLeft<=0
+        ){
+
+          clearQuizTimer();
+
+          timeoutAnswer();
+        }
+      },
+      1000
+    );
+}
+
+
+function updateTimer(){
+
+  $("timer").textContent=
+    `${Math.max(0,timeLeft)}s`;
+
+  if(
+    timeLeft<=5
+  ){
+
+    $("timer").className=
+      "timer danger";
+  }
+
+  else{
+
+    $("timer").className=
+      "timer";
+  }
+}
+
+
+function disableOptions(){
+
+  document
+    .querySelectorAll(
+      ".option"
+    )
+    .forEach(
+      button=>{
+
+        button.disabled=
+          true;
+      }
+    );
+}
+
+
+function chooseAnswer(
+  index,
+  button
+){
+
+  if(answered){
+    return;
+  }
+
+  answered=true;
+
+  clearQuizTimer();
+
+  disableOptions();
+
+  const q=
+    activeQuestions[current];
+
+  const buttons=
+    [
+      ...document
+        .querySelectorAll(
+          ".option"
+        )
+    ];
+
+  if(
+    index===q.answer
+  ){
+
+    correct++;
+
+    button
+      .classList
+      .add("correct");
+
+    $("feedback")
+      .className=
+      "feedback good";
+
+    $("feedback")
+      .innerHTML=
+      `<strong>Benar!</strong><br>${q.explanation}`;
+  }
+
+  else{
+
+    button
+      .classList
+      .add("wrong");
+
+    buttons[q.answer]
+      .classList
+      .add("correct");
+
+    $("feedback")
+      .className=
+      "feedback bad";
+
+    $("feedback")
+      .innerHTML=
+      `<strong>Belum tepat.</strong><br>${q.explanation}`;
+  }
+
+  finishQuestion();
+}
+
+
+function timeoutAnswer(){
+
+  if(answered){
+    return;
+  }
+
+  answered=true;
+
+  disableOptions();
+
+  const q=
+    activeQuestions[current];
+
+  const buttons=
+    [
+      ...document
+        .querySelectorAll(
+          ".option"
+        )
+    ];
+
+  if(
+    buttons[q.answer]
+  ){
+
+    buttons[q.answer]
+      .classList
+      .add("correct");
+  }
+
+  $("feedback")
+    .className=
+    "feedback bad";
+
+  $("feedback")
+    .innerHTML=
+    `<strong>Waktu habis.</strong>
+    Jawaban dianggap salah.<br>
+    ${q.explanation}`;
+
+  finishQuestion();
+}
+
+
+function finishQuestion(){
+
+  $("progressBar")
+    .style
+    .width=
+    `${((current+1)/activeQuestions.length)*100}%`;
+
+  $("nextBtn")
+    .textContent=
+    current===
+    activeQuestions.length-1
+      ?
+      "Lihat Hasil"
+      :
+      "Lanjut";
+
+  $("nextBtn")
+    .style
+    .display=
+    "block";
+}
+
+
+function nextQuestion(){
+
+  current++;
+
+  if(
+    current<
+    activeQuestions.length
+  ){
+
+    renderQuestion();
+  }
+
+  else{
+
+    showResult();
+  }
+}
+
+
+function showResult(){
+
+  clearQuizTimer();
+
+  $("quizScreen")
+    .classList
+    .add("hidden");
+
+  $("resultScreen")
+    .classList
+    .remove("hidden");
+
+  $("progressBar")
+    .style
+    .width=
+    "100%";
+
+  const score=
+    Math.round(
+      (
+        correct/
+        activeQuestions.length
+      )*100
+    );
+
+  $("scoreText")
+    .textContent=
+    score;
+
+  if(
+    score>=
+    PASSING_SCORE
+  ){
+
+    $("resultTitle")
+      .textContent=
+      "Congratulations!";
+
+    $("resultCopy")
+      .textContent=
+      `Kamu menjawab ${correct} dari ${activeQuestions.length} pertanyaan dengan benar.`;
+
+    $("resultMessage")
+      .innerHTML=
+      `
+      <div class="reward">
+
+        CONGRATULATIONS!
+
+        <br><br>
+
+        Tunjukkan halaman ini
+        ke petugas booth
+        untuk mendapatkan souvenir.
+
+      </div>
+      `;
+
+    $("restartBtn")
+      .textContent=
+      "Main Lagi";
+  }
+
+  else{
+
+    $("resultTitle")
+      .textContent=
+      "Almost There!";
+
+    $("resultCopy")
+      .textContent=
+      `Nilai kamu ${score}.`;
+
+    $("resultMessage")
+      .innerHTML=
+      `
+      <div class="retry">
+
+        Nilai kamu masih belum memenuhi skor minimum.
+
+        <br>
+
+        Yuk, ulangi quiz dan
+        raih kesempatan mendapatkan souvenir.
+
+      </div>
+      `;
+
+    $("restartBtn")
+      .textContent=
+      "Ulang Quiz";
+  }
+}
+
+
+$("startBtn")
+  .addEventListener(
+    "click",
+    startQuiz
+  );
+
+$("nextBtn")
+  .addEventListener(
+    "click",
+    nextQuestion
+  );
+
+$("restartBtn")
+  .addEventListener(
+    "click",
+    startQuiz
+  );
+
+</script>
+
+</body>
+</html>
