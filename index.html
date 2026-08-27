@@ -7,7 +7,6 @@
   <title>Investment Financing Challenge</title>
 
   <style>
-
     *{
       box-sizing:border-box;
     }
@@ -15,765 +14,433 @@
     body{
       margin:0;
       min-height:100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family:Arial,Helvetica,sans-serif;
       color:#17324d;
 
       background:
-        radial-gradient(
-          circle at 10% 15%,
-          rgba(255,190,220,.55),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 85%,
-          rgba(189,174,255,.48),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 10%,
-          rgba(120,205,255,.30),
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #edf8ff 0%,
-          #dff2ff 45%,
-          #dcecff 100%
-        );
+        radial-gradient(circle at 10% 15%, rgba(255,190,220,.55), transparent 30%),
+        radial-gradient(circle at 90% 85%, rgba(189,174,255,.48), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(120,205,255,.30), transparent 35%),
+        linear-gradient(135deg,#edf8ff 0%,#dff2ff 45%,#dcecff 100%);
     }
-
 
     .wrap{
       min-height:100vh;
-
       display:flex;
       align-items:center;
       justify-content:center;
-
       padding:20px;
     }
 
-
     .card{
       width:min(720px,100%);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.98),
-          rgba(249,253,255,.95)
-        );
-
+      background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(249,253,255,.95));
       border-radius:26px;
-
       overflow:hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.9);
-
+      border:1px solid rgba(255,255,255,.9);
       box-shadow:
-        0 18px 45px
-        rgba(38,104,180,.18),
-        0 0 40px
-        rgba(245,181,224,.15);
+        0 18px 45px rgba(38,104,180,.18),
+        0 0 40px rgba(245,181,224,.15);
     }
-
 
     .progress{
       height:7px;
       background:#d9eaff;
     }
 
-
     .progress div{
       height:100%;
       width:0%;
-
-      background:
-        linear-gradient(
-          90deg,
-          #164fd9,
-          #1c7ef5,
-          #2cb2ff
-        );
-
+      background:linear-gradient(90deg,#164fd9,#1c7ef5,#2cb2ff);
       transition:.25s;
     }
 
-
     .content{
       padding:36px 28px;
-
       background:
-        radial-gradient(
-          circle at 0% 100%,
-          rgba(255,190,216,.20),
-          transparent 33%
-        ),
-        radial-gradient(
-          circle at 100% 0%,
-          rgba(176,211,255,.24),
-          transparent 35%
-        );
+        radial-gradient(circle at 0% 100%,rgba(255,190,216,.20),transparent 33%),
+        radial-gradient(circle at 100% 0%,rgba(176,211,255,.24),transparent 35%);
     }
-
 
     .hidden{
       display:none;
     }
-
 
     .hero,
     .result{
       text-align:center;
     }
 
-
     .hero{
       padding:20px 4px 24px;
     }
 
-
     h1{
       color:#074ca8;
-
-      font-size:
-        clamp(
-          31px,
-          7vw,
-          46px
-        );
-
+      font-size:clamp(31px,7vw,46px);
       line-height:1.08;
-
-      margin:
-        10px
-        auto
-        16px;
-
+      margin:10px auto 16px;
       max-width:600px;
     }
-
 
     h2{
       color:#0752ad;
     }
 
-
     .hero-description{
       color:#536c88;
-
       font-size:15px;
-
       line-height:1.6;
-
       max-width:520px;
-
-      margin:
-        0
-        auto
-        28px;
+      margin:0 auto 28px;
     }
 
+    .mission-intro{
+      max-width:520px;
+      margin:0 auto 26px;
+      padding:18px;
+      border-radius:16px;
+      background:rgba(255,255,255,.68);
+      border:1px solid #dceafb;
+      text-align:left;
+      line-height:1.65;
+      color:#3d5875;
+    }
 
-    /* =========================
-       FORM
-    ========================= */
-
+    .mission-intro strong{
+      color:#0752ad;
+    }
 
     .form-area{
       max-width:520px;
       margin:0 auto;
     }
 
-
     .form-group{
       text-align:left;
       margin-bottom:16px;
     }
 
-
     .form-group label{
       display:block;
-
       margin-bottom:7px;
-
       font-size:14px;
       font-weight:bold;
-
       color:#244767;
     }
-
 
     .form-group input,
     .form-group select{
       width:100%;
-
-      padding:
-        14px
-        15px;
-
-      border:
-        1.5px solid
-        #d5e5f7;
-
+      padding:14px 15px;
+      border:1.5px solid #d5e5f7;
       border-radius:14px;
-
       font-size:16px;
-
       outline:none;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          .92
-        );
-
+      background:rgba(255,255,255,.92);
       color:#17324d;
-
-      transition:
-        border .15s ease,
-        box-shadow .15s ease;
+      transition:border .15s ease,box-shadow .15s ease;
     }
-
 
     .form-group input:focus,
     .form-group select:focus{
       border-color:#168cff;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(
-          22,
-          140,
-          255,
-          .10
-        );
+      box-shadow:0 0 0 3px rgba(22,140,255,.10);
     }
-
 
     #formError{
       min-height:18px;
-
       color:#a8324d;
-
       font-size:13px;
       line-height:1.4;
-
-      margin:
-        0
-        0
-        10px;
-
+      margin:0 0 10px;
       text-align:left;
     }
 
-
-    /* =========================
-       BUTTON
-    ========================= */
-
-
     .primary{
       width:100%;
-
       border:0;
-
       border-radius:16px;
-
       padding:16px;
-
       font-size:16px;
       font-weight:bold;
-
       color:white;
-
       cursor:pointer;
-
-      background:
-        linear-gradient(
-          100deg,
-          #064acb 0%,
-          #0e74f5 55%,
-          #28a8ff 100%
-        );
-
-      box-shadow:
-        0 9px 22px
-        rgba(
-          20,
-          111,
-          237,
-          .28
-        );
-
-      transition:
-        transform .15s ease,
-        box-shadow .15s ease;
+      background:linear-gradient(100deg,#064acb 0%,#0e74f5 55%,#28a8ff 100%);
+      box-shadow:0 9px 22px rgba(20,111,237,.28);
+      transition:transform .15s ease,box-shadow .15s ease;
     }
-
 
     .primary:hover{
-      transform:
-        translateY(-1px);
-
-      box-shadow:
-        0 12px 26px
-        rgba(
-          20,
-          111,
-          237,
-          .32
-        );
+      transform:translateY(-1px);
+      box-shadow:0 12px 26px rgba(20,111,237,.32);
     }
-
 
     .primary:active{
-      transform:
-        translateY(1px);
+      transform:translateY(1px);
     }
-
-
-    /* =========================
-       QUIZ
-    ========================= */
-
 
     .quiz-head{
       display:flex;
-
-      justify-content:
-        space-between;
-
+      justify-content:space-between;
       align-items:center;
-
       margin-bottom:12px;
-
       gap:12px;
     }
-
 
     #questionNo{
       color:#0752ad;
       font-size:14px;
     }
 
-
     .timer{
       font-weight:bold;
-
-      background:
-        linear-gradient(
-          135deg,
-          #e8f2ff,
-          #f5edff
-        );
-
+      background:linear-gradient(135deg,#e8f2ff,#f5edff);
       color:#0752ad;
-
-      padding:
-        9px
-        13px;
-
+      padding:9px 13px;
       border-radius:999px;
-
       min-width:60px;
-
       text-align:center;
-
-      border:
-        1px solid
-        #d3e5ff;
+      border:1px solid #d3e5ff;
     }
-
 
     .timer.danger{
       background:#fff0f4;
-
       color:#d9415d;
-
       border-color:#ffcbd7;
     }
 
-
     .timerbar{
       height:6px;
-
       background:#edf1f6;
-
       border-radius:99px;
-
       overflow:hidden;
-
       margin-bottom:22px;
     }
-
 
     .timerbar div{
       height:100%;
       width:100%;
-
-      background:
-        linear-gradient(
-          90deg,
-          #1556e8,
-          #1b8cf9,
-          #39b8ff
-        );
+      background:linear-gradient(90deg,#1556e8,#1b8cf9,#39b8ff);
     }
-
 
     .question{
       font-size:22px;
-
       font-weight:bold;
-
       line-height:1.42;
-
       margin-bottom:22px;
-
       color:#153b69;
     }
-
 
     .options{
       display:grid;
       gap:12px;
     }
 
-
     .option{
-      border:
-        1.5px solid
-        #d5e5f7;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #fbfdff 72%,
-          #fff6fb 100%
-        );
-
+      border:1.5px solid #d5e5f7;
+      background:linear-gradient(135deg,#ffffff 0%,#fbfdff 72%,#fff6fb 100%);
       border-radius:15px;
-
-      padding:
-        15px
-        16px;
-
+      padding:15px 16px;
       text-align:left;
-
       cursor:pointer;
-
       font-size:15px;
       line-height:1.4;
-
       color:#244767;
-
-      transition:
-        border .15s ease,
-        background .15s ease;
+      transition:border .15s ease,background .15s ease;
     }
-
 
     .option:hover{
       border-color:#72aef5;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f6fbff,
-          #fff7fc
-        );
+      background:linear-gradient(135deg,#f6fbff,#fff7fc);
     }
-
 
     .option.correct{
       background:#ecfff3;
-
       border-color:#50c878;
-
       color:#116b36;
-
       font-weight:bold;
     }
 
-
     .option.wrong{
       background:#fff1f4;
-
       border-color:#ef879a;
-
       color:#a3253d;
     }
-
 
     .option:disabled{
       cursor:default;
     }
 
-
     .feedback{
       margin-top:17px;
-
-      padding:
-        15px
-        16px;
-
+      padding:15px 16px;
       border-radius:14px;
-
       display:none;
-
       line-height:1.5;
-
       font-size:14px;
     }
 
-
     .feedback.good{
       display:block;
-
       background:#ecfff3;
-
       color:#15693a;
-
-      border:
-        1px solid
-        #bce9cc;
+      border:1px solid #bce9cc;
     }
-
 
     .feedback.bad{
       display:block;
-
       background:#fff4f6;
-
       color:#982c42;
-
-      border:
-        1px solid
-        #ffd0da;
+      border:1px solid #ffd0da;
     }
-
 
     .next{
       margin-top:17px;
       display:none;
     }
 
-
-    /* =========================
-       RESULT
-    ========================= */
-
-
     .score{
       font-size:70px;
-
       font-weight:bold;
-
       color:#0752d0;
-
-      margin:
-        20px
-        0
-        2px;
-
-      text-shadow:
-        0 5px 18px
-        rgba(
-          27,
-          99,
-          227,
-          .15
-        );
+      margin:20px 0 2px;
+      text-shadow:0 5px 18px rgba(27,99,227,.15);
     }
-
 
     .result h2{
       font-size:30px;
-
-      margin:
-        22px
-        0
-        10px;
+      margin:22px 0 10px;
     }
-
 
     .result p{
       color:#59708a;
       line-height:1.6;
     }
 
-
     .reward{
-      background:
-        linear-gradient(
-          135deg,
-          #ecfff4,
-          #f5fff9
-        );
-
-      border:
-        1.5px dashed
-        #38aa66;
-
-      color:#126a38;
-
+      background:linear-gradient(135deg,#eef8ff,#f7fbff);
+      border:1.5px solid #9fc8ef;
+      color:#244767;
       padding:20px;
-
       border-radius:18px;
-
-      margin:
-        22px
-        0;
-
+      margin:22px 0;
       line-height:1.65;
-
-      font-weight:bold;
     }
-
 
     .retry{
-      background:
-        linear-gradient(
-          135deg,
-          #fff4f7,
-          #fff9fc
-        );
-
-      border:
-        1.5px dashed
-        #e48ba1;
-
+      background:linear-gradient(135deg,#fff4f7,#fff9fc);
+      border:1.5px solid #e7b2c0;
       color:#91364d;
-
       padding:20px;
-
       border-radius:18px;
-
-      margin:
-        22px
-        0;
-
+      margin:22px 0;
       line-height:1.65;
+    }
 
+    .mission-status{
+      margin-top:18px;
+      padding:16px;
+      border-radius:14px;
+      background:rgba(255,255,255,.7);
+      border:1px solid #dce8f5;
+      text-align:left;
+      line-height:1.8;
+    }
+
+    .mission-status .done{
+      color:#187143;
       font-weight:bold;
     }
 
+    .mission-status .pending{
+      color:#6f7f90;
+      font-weight:bold;
+    }
+
+    .mission-status .locked{
+      color:#a8324d;
+      font-weight:bold;
+    }
 
     .saving-status{
       margin-top:12px;
-
       font-size:12px;
-
       color:#71859a;
-
       min-height:16px;
     }
 
-
     @media(max-width:520px){
-
       .wrap{
         padding:12px;
       }
-
 
       .card{
         border-radius:22px;
       }
 
-
       .content{
-        padding:
-          26px
-          19px;
+        padding:26px 19px;
       }
-
 
       h1{
         font-size:34px;
       }
 
-
       .hero-description{
         font-size:14px;
       }
-
 
       .question{
         font-size:19px;
       }
 
-
       .option{
         font-size:14px;
       }
 
-
       .score{
         font-size:60px;
       }
-
     }
-
   </style>
-
 </head>
 
-
 <body>
-
 
 <div class="wrap">
 
   <div class="card">
 
-
     <div class="progress">
       <div id="progressBar"></div>
     </div>
 
-
     <div class="content">
 
+      <!-- HALAMAN AWAL -->
 
-      <!-- =========================
-           HALAMAN AWAL
-      ========================== -->
-
-
-      <div
-        id="startScreen"
-        class="hero"
-      >
-
+      <div id="startScreen" class="hero">
 
         <h1>
           How Well Do You Know Investment Financing?
         </h1>
 
-
         <p class="hero-description">
-          Yuk, isi data diri dan uji pengetahuanmu
-          tentang Investment Financing melalui quiz ini.
+          Complete 2 missions to unlock your souvenir.
         </p>
 
+        <div class="mission-intro">
+          <strong>Mission 1</strong><br>
+          Knowledge Quiz
+          <br><br>
+          <strong>Mission 2</strong><br>
+          Memory Challenge
+        </div>
 
         <div class="form-area">
 
-
           <div class="form-group">
-
             <label for="nameInput">
               Nama Lengkap
             </label>
@@ -784,12 +451,9 @@
               placeholder="Masukkan nama lengkap"
               autocomplete="name"
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="phoneInput">
               No. HP
             </label>
@@ -801,12 +465,9 @@
               inputmode="numeric"
               autocomplete="tel"
             >
-
           </div>
 
-
           <div class="form-group">
-
             <label for="roleInput">
               Role
             </label>
@@ -834,12 +495,9 @@
               </option>
 
             </select>
-
           </div>
 
-
           <div class="form-group">
-
             <label for="branchInput">
               Cabang
             </label>
@@ -849,37 +507,28 @@
               id="branchInput"
               placeholder="Masukkan cabang"
             >
-
           </div>
 
-
           <div id="formError"></div>
-
 
           <button
             class="primary"
             id="startBtn"
           >
-            Mulai Quiz
+            Start Mission 1
           </button>
-
 
         </div>
 
       </div>
 
 
-
-      <!-- =========================
-           HALAMAN QUIZ
-      ========================== -->
-
+      <!-- HALAMAN QUIZ -->
 
       <div
         id="quizScreen"
         class="hidden"
       >
-
 
         <div class="quiz-head">
 
@@ -894,31 +543,24 @@
 
         </div>
 
-
         <div class="timerbar">
-
           <div id="timerBar"></div>
-
         </div>
-
 
         <div
           class="question"
           id="questionText"
         ></div>
 
-
         <div
           class="options"
           id="options"
         ></div>
 
-
         <div
           id="feedback"
           class="feedback"
         ></div>
-
 
         <button
           class="primary next"
@@ -927,21 +569,15 @@
           Lanjut
         </button>
 
-
       </div>
 
 
-
-      <!-- =========================
-           HALAMAN HASIL
-      ========================== -->
-
+      <!-- HALAMAN HASIL -->
 
       <div
         id="resultScreen"
         class="result hidden"
       >
-
 
         <div
           class="score"
@@ -950,37 +586,29 @@
           0
         </div>
 
-
         <div>
           Nilai Akhir
         </div>
 
-
         <h2 id="resultTitle"></h2>
-
 
         <p id="resultCopy"></p>
 
-
         <div id="resultMessage"></div>
-
 
         <button
           class="primary"
           id="restartBtn"
         >
-          Ulang Quiz
+          Retry Mission 1
         </button>
-
 
         <div
           class="saving-status"
           id="savingStatus"
         ></div>
 
-
       </div>
-
 
     </div>
 
@@ -991,25 +619,18 @@
 
 <script>
 
-
 /* =====================================================
    PENGATURAN
 ===================================================== */
 
-
 const TIME_LIMIT = 20;
-
 const PASSING_SCORE = 70;
-
 const QUESTIONS_TO_SHOW = 10;
 
 
 /* =====================================================
    GOOGLE SHEETS
-
-   NANTI GANTI DENGAN URL APPS SCRIPT
 ===================================================== */
-
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxMkfxnSURorAAEfw1cxSWrXEuzN8jTXjYhxKAiTLA5Ip9Xhj4kqq80FR6Ukef-fwqz/exec";
@@ -1019,615 +640,199 @@ const APPS_SCRIPT_URL =
    DATA PESERTA
 ===================================================== */
 
-
 let participant = {
-
   name:"",
-
   phone:"",
-
   role:"",
-
   branch:""
-
 };
 
 
 /* =====================================================
    BANK SOAL
-
-   answer:
-   0 = A
-   1 = B
-   2 = C
-   3 = D
 ===================================================== */
-
 
 const QUESTIONS = [
 
-
-  /* =========================
-     SOAL 1
-  ========================= */
-
-
   {
-
     question:
       "Fioni sedang membutuhkan pembiayaan pembelian aset produktif di developer rekanan. Program pembiayaan yang dapat digunakan adalah:",
-
     options:[
-
       "Kredit Tempat Usaha / Investment Financing",
-
       "Kredit Modal Kerja",
-
       "KPR",
-
       "KKB"
-
     ],
-
     answer:0,
-
     explanation:
       "Jawaban yang benar adalah Kredit Tempat Usaha / Investment Financing."
-
   },
 
-
-  /* =========================
-     SOAL 2
-  ========================= */
-
-
   {
-
     question:
       "Salah satu benefit Kredit Tempat Usaha adalah unit dapat dibiayai walaupun bentuk sertifikat masih induk dan/atau bangunannya masih indent.",
-
     options:[
-
       "Benar",
-
       "Salah"
-
     ],
-
     answer:0,
-
     explanation:
       "Benar. Unit dapat dibiayai walaupun bentuk sertifikat masih induk dan/atau bangunannya masih indent sesuai ketentuan program."
-
   },
 
-
-  /* =========================
-     SOAL 3
-  ========================= */
-
-
   {
-
     question:
       "Kredit Tempat Usaha tidak mewajibkan Asuransi Jiwa?",
-
     options:[
-
       "Salah",
-
       "Benar"
-
     ],
-
     answer:1,
-
     explanation:
       "Benar. Kredit Tempat Usaha tidak mewajibkan Asuransi Jiwa."
-
   },
 
-
-  /* =========================
-     SOAL 4
-  ========================= */
-
-
   {
-
     question:
       "PT Maju Terus ingin membeli ruko di developer rekanan dengan kondisi sertifikat belum pecah per unit. Apakah pengajuannya dapat diproses menggunakan fasilitas kredit?",
-
     options:[
-
       "Tidak bisa karena menggunakan nama PT",
-
       "Bisa, menggunakan Kredit Tempat Usaha / Investment Financing"
-
     ],
-
     answer:1,
-
     explanation:
       "Bisa. Pengajuan dapat menggunakan Kredit Tempat Usaha / Investment Financing."
-
   },
 
-
-  /* =========================
-     SOAL 5
-  ========================= */
-
-
   {
-
     question:
       "Objek apa saja yang dapat dibiayai melalui Kredit Tempat Usaha / Investment Financing?",
-
     options:[
-
       "Gudang, Ruko, Rumah Tinggal",
-
       "Gudang, Ruko, SoHo, Business Loft",
-
       "Business Loft, Rumah Tinggal, Ruko",
-
       "Rumah Tinggal, Gudang, Ruko"
-
     ],
-
     answer:1,
-
     explanation:
       "Objek yang dapat dibiayai antara lain Gudang, Ruko, SoHo, dan Business Loft."
-
   },
 
-
-  /* =========================
-     SOAL 6
-  ========================= */
-
-
   {
-
     question:
       "Berapa DP minimal pembelian Tanah/Bangunan melalui Kredit Tempat Usaha / Investment Financing?",
-
     options:[
-
       "10%",
-
       "5%",
-
       "20%",
-
       "30%"
-
     ],
-
     answer:0,
-
     explanation:
       "DP minimal pembelian Tanah/Bangunan melalui Kredit Tempat Usaha / Investment Financing adalah 10%."
-
   },
 
-
-  /* =========================
-     SOAL 7
-  ========================= */
-
-
   {
-
     question:
       "Regina sedang mencicil unit secara in-house di developer dan ingin mengalihkan pembiayaannya ke bank. Apakah hal tersebut memungkinkan?",
-
     options:[
-
       "Ya, bisa dialihkan ke pembiayaan bank",
-
       "Tidak bisa"
-
     ],
-
     answer:0,
-
     explanation:
       "Bisa. Pengalihan dari cicilan in-house ke pembiayaan bank dimungkinkan."
-
   },
 
-
-  /* =========================
-     SOAL 8
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 1",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 1",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 9
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 2",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 2",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 10
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 3",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 3",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 11
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 4",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 4",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 12
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 5",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 5",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 13
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 6",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 6",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 14
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 7",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 7",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 15
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 8",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 8",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 16
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 9",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 9",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 17
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 10",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 10",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 18
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 11",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 11",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 19
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 12",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 12",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   },
 
-
-  /* =========================
-     SOAL 20
-  ========================= */
-
-
   {
-
-    question:
-      "Pertanyaan 13",
-
-    options:[
-
-      "Jawaban A",
-
-      "Jawaban B",
-
-      "Jawaban C",
-
-      "Jawaban D"
-
-    ],
-
+    question:"Pertanyaan 13",
+    options:["Jawaban A","Jawaban B","Jawaban C","Jawaban D"],
     answer:0,
-
-    explanation:
-      "Jawaban yang benar adalah Jawaban A."
-
+    explanation:"Jawaban yang benar adalah Jawaban A."
   }
 
 ];
@@ -1637,1007 +842,543 @@ const QUESTIONS = [
    MESIN QUIZ
 ===================================================== */
 
-
 let activeQuestions = [];
-
 let current = 0;
-
 let correct = 0;
-
 let answered = false;
-
 let timeLeft = TIME_LIMIT;
-
 let timerId = null;
 
-
-const $ =
-  id =>
-    document.getElementById(id);
-
-
-/* =========================
-   ACAK ARRAY
-========================= */
+const $ = id => document.getElementById(id);
 
 
 function shuffleArray(array){
+  const result = [...array];
 
-  const result =
-    [...array];
+  for(let i=result.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
 
-  for(
-    let i =
-      result.length - 1;
-
-    i > 0;
-
-    i--
-  ){
-
-    const j =
-      Math.floor(
-        Math.random() *
-        (i + 1)
-      );
-
-    [
-      result[i],
-      result[j]
-    ] =
-    [
-      result[j],
-      result[i]
-    ];
-
+    [result[i],result[j]] =
+    [result[j],result[i]];
   }
 
   return result;
 }
 
 
-/* =========================
-   CLEAR TIMER
-========================= */
-
-
 function clearQuizTimer(){
-
   if(timerId){
-
-    clearInterval(
-      timerId
-    );
-
+    clearInterval(timerId);
     timerId = null;
-
   }
-
 }
-
-
-/* =========================
-   MULAI QUIZ
-========================= */
 
 
 function startQuiz(){
 
-
   const name =
-    $("nameInput")
-      .value
-      .trim();
-
+    $("nameInput").value.trim();
 
   const phone =
-    $("phoneInput")
-      .value
-      .trim();
-
+    $("phoneInput").value.trim();
 
   const role =
-    $("roleInput")
-      .value;
-
+    $("roleInput").value;
 
   const branch =
-    $("branchInput")
-      .value
-      .trim();
+    $("branchInput").value.trim();
 
 
-  if(
-    name.length < 2
-  ){
-
-    $("formError")
-      .textContent =
+  if(name.length < 2){
+    $("formError").textContent =
       "Mohon masukkan nama lengkap.";
-
     return;
-
   }
 
 
   const phoneClean =
-    phone.replace(
-      /\D/g,
-      ""
-    );
+    phone.replace(/\D/g,"");
 
 
   if(
     phoneClean.length < 10 ||
     phoneClean.length > 15
   ){
-
-    $("formError")
-      .textContent =
+    $("formError").textContent =
       "Nomor HP tidak valid.";
-
     return;
-
   }
 
 
-  if(
-    role === ""
-  ){
-
-    $("formError")
-      .textContent =
+  if(role === ""){
+    $("formError").textContent =
       "Mohon pilih role.";
-
     return;
-
   }
 
 
-  if(
-    branch.length < 2
-  ){
-
-    $("formError")
-      .textContent =
+  if(branch.length < 2){
+    $("formError").textContent =
       "Mohon masukkan cabang.";
-
     return;
-
   }
 
 
-  $("formError")
-    .textContent =
-    "";
+  $("formError").textContent = "";
 
 
   participant = {
-
     name:name,
-
     phone:phoneClean,
-
     role:role,
-
     branch:branch
-
   };
 
 
   clearQuizTimer();
 
-
   current = 0;
-
   correct = 0;
-
   answered = false;
 
 
   activeQuestions =
-
-    shuffleArray(
-      QUESTIONS
-    )
-
-    .slice(
-
-      0,
-
-      Math.min(
-        QUESTIONS_TO_SHOW,
-        QUESTIONS.length
-      )
-
-    );
+    shuffleArray(QUESTIONS)
+      .slice(
+        0,
+        Math.min(
+          QUESTIONS_TO_SHOW,
+          QUESTIONS.length
+        )
+      );
 
 
   $("startScreen")
-    .classList
-    .add("hidden");
-
+    .classList.add("hidden");
 
   $("resultScreen")
-    .classList
-    .add("hidden");
-
+    .classList.add("hidden");
 
   $("quizScreen")
-    .classList
-    .remove("hidden");
+    .classList.remove("hidden");
 
-
-  $("progressBar")
-    .style
-    .width =
-    "0%";
-
+  $("progressBar").style.width = "0%";
 
   renderQuestion();
-
 }
-
-
-/* =========================
-   RENDER SOAL
-========================= */
 
 
 function renderQuestion(){
 
-
   clearQuizTimer();
-
-
   answered = false;
 
+  $("feedback").className = "feedback";
+  $("feedback").innerHTML = "";
+  $("nextBtn").style.display = "none";
 
-  $("feedback")
-    .className =
-    "feedback";
+  const q = activeQuestions[current];
 
+  $("questionNo").textContent =
+    `Pertanyaan ${current+1} dari ${activeQuestions.length}`;
 
-  $("feedback")
-    .innerHTML =
-    "";
-
-
-  $("nextBtn")
-    .style
-    .display =
-    "none";
-
-
-  const q =
-    activeQuestions[current];
-
-
-  $("questionNo")
-    .textContent =
-    `Pertanyaan ${current + 1} dari ${activeQuestions.length}`;
-
-
-  $("questionText")
-    .textContent =
+  $("questionText").textContent =
     q.question;
 
+  $("progressBar").style.width =
+    `${(current/activeQuestions.length)*100}%`;
 
-  $("progressBar")
-    .style
-    .width =
-    `${
-      (
-        current /
-        activeQuestions.length
-      ) * 100
-    }%`;
-
-
-  $("options")
-    .innerHTML =
-    "";
+  $("options").innerHTML = "";
 
 
   q.options.forEach(
-
-    (
-      option,
-      index
-    ) => {
-
+    (option,index)=>{
 
       const button =
-        document.createElement(
-          "button"
-        );
+        document.createElement("button");
 
-
-      button.type =
-        "button";
-
-
-      button.className =
-        "option";
-
+      button.type = "button";
+      button.className = "option";
 
       button.textContent =
-        `${
-          String.fromCharCode(
-            65 + index
-          )
-        }. ${option}`;
-
+        `${String.fromCharCode(65+index)}. ${option}`;
 
       button.addEventListener(
-
         "click",
-
-        () =>
-          chooseAnswer(
-            index,
-            button
-          )
-
+        ()=>chooseAnswer(index,button)
       );
 
-
-      $("options")
-        .appendChild(
-          button
-        );
-
+      $("options").appendChild(button);
     }
-
   );
 
 
   startTimer();
-
 }
-
-
-/* =========================
-   TIMER
-========================= */
 
 
 function startTimer(){
 
-
-  timeLeft =
-    TIME_LIMIT;
-
+  timeLeft = TIME_LIMIT;
 
   updateTimer();
 
-
-  $("timerBar")
-    .style
-    .transition =
-    "none";
-
-
-  $("timerBar")
-    .style
-    .width =
-    "100%";
-
+  $("timerBar").style.transition = "none";
+  $("timerBar").style.width = "100%";
 
   requestAnimationFrame(
-
-    () => {
-
+    ()=>{
       requestAnimationFrame(
-
-        () => {
-
-          $("timerBar")
-            .style
-            .transition =
+        ()=>{
+          $("timerBar").style.transition =
             `width ${TIME_LIMIT}s linear`;
 
-
-          $("timerBar")
-            .style
-            .width =
-            "0%";
-
+          $("timerBar").style.width = "0%";
         }
-
       );
-
     }
-
   );
 
 
   timerId =
-
     setInterval(
-
-      () => {
-
-
+      ()=>{
         timeLeft--;
-
 
         updateTimer();
 
-
-        if(
-          timeLeft <= 0
-        ){
-
-
+        if(timeLeft <= 0){
           clearQuizTimer();
-
-
           timeoutAnswer();
-
         }
-
       },
-
       1000
-
     );
-
 }
-
-
-/* =========================
-   UPDATE TIMER
-========================= */
 
 
 function updateTimer(){
 
+  $("timer").textContent =
+    `${Math.max(0,timeLeft)}s`;
 
-  $("timer")
-    .textContent =
-    `${Math.max(
-      0,
-      timeLeft
-    )}s`;
-
-
-  if(
-    timeLeft <= 5
-  ){
-
-    $("timer")
-      .className =
+  if(timeLeft <= 5){
+    $("timer").className =
       "timer danger";
-
-  }
-
-  else{
-
-    $("timer")
-      .className =
+  }else{
+    $("timer").className =
       "timer";
-
   }
-
 }
-
-
-/* =========================
-   DISABLE OPTION
-========================= */
 
 
 function disableOptions(){
-
-
   document
-
-    .querySelectorAll(
-      ".option"
-    )
-
+    .querySelectorAll(".option")
     .forEach(
-
-      button => {
-
-        button.disabled =
-          true;
-
+      button=>{
+        button.disabled = true;
       }
-
     );
-
 }
 
 
-/* =========================
-   PILIH JAWABAN
-========================= */
-
-
-function chooseAnswer(
-  index,
-  button
-){
-
+function chooseAnswer(index,button){
 
   if(answered){
     return;
   }
 
-
-  answered =
-    true;
-
+  answered = true;
 
   clearQuizTimer();
 
-
   disableOptions();
-
 
   const q =
     activeQuestions[current];
 
-
   const buttons =
-
-    [
-      ...document
-        .querySelectorAll(
-          ".option"
-        )
-    ];
+    [...document.querySelectorAll(".option")];
 
 
-  if(
-    index ===
-    q.answer
-  ){
-
+  if(index === q.answer){
 
     correct++;
 
+    button.classList.add("correct");
 
-    button
-      .classList
-      .add(
-        "correct"
-      );
-
-
-    $("feedback")
-      .className =
+    $("feedback").className =
       "feedback good";
 
-
-    $("feedback")
-      .innerHTML =
+    $("feedback").innerHTML =
       `<strong>Benar!</strong><br>${q.explanation}`;
 
-  }
+  }else{
 
+    button.classList.add("wrong");
 
-  else{
-
-
-    button
-      .classList
-      .add(
-        "wrong"
-      );
-
-
-    if(
-      buttons[q.answer]
-    ){
-
-
+    if(buttons[q.answer]){
       buttons[q.answer]
         .classList
-        .add(
-          "correct"
-        );
-
+        .add("correct");
     }
 
-
-    $("feedback")
-      .className =
+    $("feedback").className =
       "feedback bad";
 
-
-    $("feedback")
-      .innerHTML =
+    $("feedback").innerHTML =
       `<strong>Belum tepat.</strong><br>${q.explanation}`;
-
   }
 
 
   finishQuestion();
-
 }
-
-
-/* =========================
-   WAKTU HABIS
-========================= */
 
 
 function timeoutAnswer(){
 
-
   if(answered){
     return;
   }
 
-
-  answered =
-    true;
-
+  answered = true;
 
   disableOptions();
-
 
   const q =
     activeQuestions[current];
 
-
   const buttons =
+    [...document.querySelectorAll(".option")];
 
-    [
-      ...document
-        .querySelectorAll(
-          ".option"
-        )
-    ];
-
-
-  if(
-    buttons[q.answer]
-  ){
-
+  if(buttons[q.answer]){
     buttons[q.answer]
       .classList
-      .add(
-        "correct"
-      );
-
+      .add("correct");
   }
 
-
-  $("feedback")
-    .className =
+  $("feedback").className =
     "feedback bad";
 
-
-  $("feedback")
-    .innerHTML =
+  $("feedback").innerHTML =
     `<strong>Waktu habis.</strong>
     Jawaban dianggap salah.<br>
     ${q.explanation}`;
 
-
   finishQuestion();
-
 }
-
-
-/* =========================
-   FINISH QUESTION
-========================= */
 
 
 function finishQuestion(){
 
+  $("progressBar").style.width =
+    `${((current+1)/activeQuestions.length)*100}%`;
 
-  $("progressBar")
-    .style
-    .width =
-
-    `${
-      (
-        (
-          current + 1
-        ) /
-        activeQuestions.length
-      ) * 100
-    }%`;
-
-
-  $("nextBtn")
-    .textContent =
-
-    current ===
-    activeQuestions.length - 1
-
+  $("nextBtn").textContent =
+    current === activeQuestions.length-1
       ? "Lihat Hasil"
-
       : "Lanjut";
 
-
-  $("nextBtn")
-    .style
-    .display =
+  $("nextBtn").style.display =
     "block";
-
 }
-
-
-/* =========================
-   NEXT QUESTION
-========================= */
 
 
 function nextQuestion(){
 
-
   current++;
 
-
-  if(
-    current <
-    activeQuestions.length
-  ){
-
+  if(current < activeQuestions.length){
     renderQuestion();
-
-  }
-
-  else{
-
+  }else{
     showResult();
-
   }
-
 }
 
 
-/* =========================
-   KIRIM KE GOOGLE SHEETS
-========================= */
-
-
-function sendResult(
-  score,
-  status
-){
-
-
-  if(
-    !APPS_SCRIPT_URL ||
-    APPS_SCRIPT_URL.includes(
-      "PASTE_URL"
-    )
-  ){
-
-    $("savingStatus")
-      .textContent =
-      "Mode test: hasil belum terhubung ke Google Sheets.";
-
-    return;
-
-  }
-
+function sendResult(score,status){
 
   const data = {
-
-    name:
-      participant.name,
-
-    phone:
-      participant.phone,
-
-    role:
-      participant.role,
-
-    branch:
-      participant.branch,
-
-    score:
-      score,
-
-    correct:
-      correct,
-
-    total:
-      activeQuestions.length,
-
-    status:
-      status
-
+    name:participant.name,
+    phone:participant.phone,
+    role:participant.role,
+    branch:participant.branch,
+    score:score,
+    correct:correct,
+    total:activeQuestions.length,
+    status:status
   };
 
 
-  $("savingStatus")
-    .textContent =
+  $("savingStatus").textContent =
     "Menyimpan hasil...";
 
 
-  fetch
-    (APPS_SCRIPT_URL, {
-
-  method: "POST",
-
-  mode: "no-cors",
-
-  headers: {
-    "Content-Type": "text/plain;charset=utf-8"
-  },
-
-  body: JSON.stringify(data)
-
-})
-
-  .then(
-
-    () => {
-
-      $("savingStatus")
-        .textContent =
-        "Hasil berhasil dicatat.";
-
+  fetch(
+    APPS_SCRIPT_URL,
+    {
+      method:"POST",
+      mode:"no-cors",
+      headers:{
+        "Content-Type":
+          "text/plain;charset=utf-8"
+      },
+      body:
+        JSON.stringify(data)
     }
-
   )
-
-
-  .catch(
-
-    error => {
-
-
-      console.error(
-        error
-      );
-
-
-      $("savingStatus")
-        .textContent =
-        "Hasil belum berhasil tersimpan.";
-
+  .then(
+    ()=>{
+      $("savingStatus").textContent =
+        "Hasil berhasil dikirim.";
     }
+  )
+  .catch(
+    error=>{
+      console.error(error);
 
+      $("savingStatus").textContent =
+        "Hasil belum berhasil dikirim.";
+    }
   );
-
 }
-
-
-/* =========================
-   HASIL AKHIR
-========================= */
 
 
 function showResult(){
 
-
   clearQuizTimer();
-
 
   $("quizScreen")
     .classList
-    .add(
-      "hidden"
-    );
-
+    .add("hidden");
 
   $("resultScreen")
     .classList
-    .remove(
-      "hidden"
-    );
+    .remove("hidden");
 
-
-  $("progressBar")
-    .style
-    .width =
+  $("progressBar").style.width =
     "100%";
 
 
   const score =
-
     Math.round(
-
       (
         correct /
         activeQuestions.length
       ) * 100
-
     );
 
 
-  $("scoreText")
-    .textContent =
+  $("scoreText").textContent =
     score;
 
 
   const status =
-
-    score >=
-    PASSING_SCORE
-
+    score >= PASSING_SCORE
       ? "Lulus"
-
       : "Belum Lulus";
 
 
-  if(
-    score >=
-    PASSING_SCORE
-  ){
+  if(score >= PASSING_SCORE){
 
+    $("resultTitle").textContent =
+      "Mission 1 Completed";
 
-    $("resultTitle")
-      .textContent =
-      "Congratulations!";
-
-
-    $("resultCopy")
-      .textContent =
+    $("resultCopy").textContent =
       `Kamu menjawab ${correct} dari ${activeQuestions.length} pertanyaan dengan benar.`;
 
-
-    $("resultMessage")
-      .innerHTML =
-
+    $("resultMessage").innerHTML =
       `
       <div class="reward">
 
-        CONGRATULATIONS!
+        <strong>
+          Mission 1 Complete
+        </strong>
 
         <br><br>
 
-        Tunjukkan halaman ini
-        ke petugas booth
-        untuk mendapatkan souvenir.
+        Knowledge Quiz berhasil diselesaikan.
+
+        <br><br>
+
+        <strong>
+          Next Mission
+        </strong>
+
+        <br>
+
+        Lanjutkan ke Memory Challenge Station
+        dan tunjukkan halaman ini kepada petugas booth.
+
+        <div class="mission-status">
+
+          <div class="done">
+            Mission 1 — Knowledge Quiz — Completed
+          </div>
+
+          <div class="pending">
+            Mission 2 — Memory Challenge — Pending
+          </div>
+
+          <div class="locked">
+            Souvenir — Locked
+          </div>
+
+        </div>
 
       </div>
       `;
 
+    /* TOMBOL DIHILANGKAN JIKA LULUS */
+    $("restartBtn").style.display =
+      "none";
 
-    $("restartBtn")
-      .textContent =
-      "Main Lagi";
+  }else{
 
-  }
+    $("resultTitle").textContent =
+      "Mission 1 Not Yet Completed";
 
+    $("resultCopy").textContent =
+      `Nilai kamu ${score}. Minimum skor untuk melanjutkan ke Mission 2 adalah ${PASSING_SCORE}.`;
 
-  else{
-
-
-    $("resultTitle")
-      .textContent =
-      "Almost There!";
-
-
-    $("resultCopy")
-      .textContent =
-      `Nilai kamu ${score}.`;
-
-
-    $("resultMessage")
-      .innerHTML =
-
+    $("resultMessage").innerHTML =
       `
       <div class="retry">
 
-        Nilai kamu masih belum
-        memenuhi skor minimum.
+        Mission 2 masih terkunci.
 
         <br><br>
 
-        Yuk, ulangi quiz dan
-        raih kesempatan mendapatkan souvenir.
+        Ulangi Knowledge Quiz
+        untuk membuka akses ke
+        <strong>Memory Challenge</strong>.
+
+        <div class="mission-status">
+
+          <div class="locked">
+            Mission 1 — Knowledge Quiz — Not Completed
+          </div>
+
+          <div class="locked">
+            Mission 2 — Memory Challenge — Locked
+          </div>
+
+          <div class="locked">
+            Souvenir — Locked
+          </div>
+
+        </div>
 
       </div>
       `;
 
+    /* TOMBOL RETRY TETAP MUNCUL JIKA GAGAL */
+    $("restartBtn").style.display =
+      "block";
 
-    $("restartBtn")
-      .textContent =
-      "Ulang Quiz";
-
+    $("restartBtn").textContent =
+      "Retry Mission 1";
   }
 
 
@@ -2645,13 +1386,7 @@ function showResult(){
     score,
     status
   );
-
 }
-
-
-/* =========================
-   BUTTON
-========================= */
 
 
 $("startBtn")
@@ -2660,20 +1395,17 @@ $("startBtn")
     startQuiz
   );
 
-
 $("nextBtn")
   .addEventListener(
     "click",
     nextQuestion
   );
 
-
 $("restartBtn")
   .addEventListener(
     "click",
     startQuiz
   );
-
 
 </script>
 
